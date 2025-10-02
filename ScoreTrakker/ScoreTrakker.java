@@ -1,6 +1,6 @@
+import java.util.Collections;
 import java.io.*;
 import java.util.*;
-import Student.java;
 
 
 public class ScoreTrakker {
@@ -35,8 +35,11 @@ public class ScoreTrakker {
         }
     }
 
-    public ArrayList<Student> getStudents() {
-        return students;
+    public void printInOrder() {
+    Collections.sort(students); // uses compareTo from Student
+        for (Student student : students) {
+            System.out.println(student);
+        }
     }
 }
 
