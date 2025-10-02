@@ -10,6 +10,13 @@ public class Student implements Comparable<Student> {
         this.score = score;
     }
 
+    //adding a compare method that compares names of students
+    @Override
+    public int compareTo(Student o){
+        return name.compareTo(o.name);
+
+    }
+
 //to string to print out  the name and score
     @Override
     public String toString(){
@@ -18,11 +25,7 @@ public class Student implements Comparable<Student> {
 
     }
         
-    @Override
-    public int compareTo(Student o){
-        return name.compareTo(o.name);
 
-    }
 }
 
 
