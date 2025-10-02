@@ -14,14 +14,8 @@ public class ScoreTrakker {
 
                 // Find the last space (to split name and score)
                 int lastSpace = line.lastIndexOf(" ");
-                if (lastSpace == -1) {
-                    System.out.println("Incorrect format: " + line);
-                    continue;
-                }
-
-                String name = line.substring(0, lastSpace).trim();
-                String scoreStr = line.substring(lastSpace + 1).trim();
-
+                String name = line;
+                String scoreStr = scanner.nextLine().trim();
                 try {
                     int score = Integer.parseInt(scoreStr);
                     Student student = new Student(name, score);
