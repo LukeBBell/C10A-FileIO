@@ -1,4 +1,3 @@
-import java.util.Collections;
 import java.io.*;
 import java.util.*;
 
@@ -11,9 +10,6 @@ public class ScoreTrakker {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
                 if (line.isEmpty()) continue;
-
-                // Find the last space (to split name and score)
-                int lastSpace = line.lastIndexOf(" ");
                 String name = line;
                 String scoreStr = scanner.nextLine().trim();
                 try {
