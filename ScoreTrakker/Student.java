@@ -1,12 +1,15 @@
-public class Student {
+public class Student implements Comparable<Student> {
+
     //initializing the name and score
     private String name;
     private int score;
+
 // constructor for the name and score
     public Student(String name, int score){
         this.name = name;
         this.score = score;
     }
+
 //to string to print out  the name and score
     @Override
     public String toString(){
@@ -14,8 +17,15 @@ public class Student {
         return name + " " + score;
 
     }
+        
+    @Override
+    public int compareTo(Student){
+        return name.compareTo(Student.score);
+
+    }
+}
+
 
 
 
     
-}
