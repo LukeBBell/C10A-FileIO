@@ -40,5 +40,10 @@ public class ScoreTrakker {
             printInOrder();
         }
     }
+
+    public static void main(String[] args) {
+        ScoreTrakker scoreTrakker = new ScoreTrakker();
+        scoreTrakker.processFiles();
+    }
 }
 
