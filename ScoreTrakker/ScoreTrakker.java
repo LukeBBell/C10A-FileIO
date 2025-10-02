@@ -4,27 +4,29 @@ import java.util.*;
 
 public class ScoreTrakker {
     private ArrayList<Student> students = new ArrayList<>();
+    private String[] files = {"scores.txt", "badscore.txt", "nofile.txt" };
 
     public void loadDataFile(String fileName) {
-        try (Scanner scanner = new Scanner(new File("scores.txt"))) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine().trim();
-                if (line.isEmpty()) continue;
-                String name = line;
-                String scoreStr = scanner.nextLine().trim();
-                try {
-                    int score = Integer.parseInt(scoreStr);
-                    Student student = new Student(name, score);
-                    students.add(student);
-                } catch (NumberFormatException e) {
-                    System.out.println("Incorrect format for " + name + " not a valid score: " + scoreStr);
+                System.out.println("Processing file: " + fileName);
+            try (Scanner scanner = new Scanner(new File("scores.txt"))) {
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine().trim();
+                    if (line.isEmpty()) continue;
+                    String name = line;
+                    String scoreStr = scanner.nextLine().trim();
+                    try {
+                        int score = Integer.parseInt(scoreStr);
+                        Student student = new Student(name, score);
+                        students.add(student);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Incorrect format for " + name + " not a valid score: " + scoreStr);
+                    }
                 }
+            } catch (FileNotFoundException e) {
+                System.out.println("Can't open file: " + fileName);
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("Can't open file: " + fileName);
-        }
-    }
 
+    }
     public void printInOrder() {
     Collections.sort(students); // uses compareTo from Student
         for (Student student : students) {
@@ -33,8 +35,10 @@ public class ScoreTrakker {
     }
 
     public void processFiles() {
-        loadDataFile("scores.txt");
-        printInOrder();
+        for (String fileName : files) {
+            loadDataFile(fileName);
+            printInOrder();
+        }
     }
 }
 
