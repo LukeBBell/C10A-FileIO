@@ -41,5 +41,10 @@ public class ScoreTrakker {
             System.out.println(student);
         }
     }
+
+    public void processFiles() {
+        loadDataFile("scores.txt");
+        printInOrder();
+    }
 }
 
