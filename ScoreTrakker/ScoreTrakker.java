@@ -1,14 +1,13 @@
 import java.io.*;
 import java.util.*;
 
-
 public class ScoreTrakker {
     private ArrayList<Student> students = new ArrayList<>();
-    private String[] files = {"scores.txt", "badscore.txt", "nofile.txt" };
+    private final String[] files = {"scores.txt", "badscore.txt", "nofile.txt" };
 
     public void loadDataFile(String fileName) {
                 System.out.println("Processing file: " + fileName);
-            try (Scanner scanner = new Scanner(new File("scores.txt"))) {
+            try (Scanner scanner = new Scanner(new File(fileName))) {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine().trim();
                     if (line.isEmpty()) continue;
@@ -32,6 +31,7 @@ public class ScoreTrakker {
         for (Student student : students) {
             System.out.println(student);
         }
+        students.clear(); // clear the list for the next file
     }
 
     public void processFiles() {
