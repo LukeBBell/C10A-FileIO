@@ -3,10 +3,12 @@ import java.util.*;
 
 public class ScoreTrakker {
     private ArrayList<Student> students = new ArrayList<>();
+    private ArrayList<String> errors = new ArrayList<>();
     private final String[] files = {"scores.txt", "badscore.txt", "nofile.txt" };
 
     public void loadDataFile(String fileName) {
-                System.out.println("Processing file: " + fileName);
+        students.clear();
+        errors.clear();
             try (Scanner scanner = new Scanner(new File(fileName))) {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine().trim();
@@ -18,20 +20,30 @@ public class ScoreTrakker {
                         Student student = new Student(name, score);
                         students.add(student);
                     } catch (NumberFormatException e) {
-                        System.out.println("Incorrect format for " + name + " not a valid score: " + scoreStr);
+                        errors.add("Incorrect format for " + name + " not a valid score: " + scoreStr);
                     }
                 }
             } catch (FileNotFoundException e) {
-                System.out.println("Can't open file: " + fileName);
+                errors.add("Can't open file: " + fileName);
             }
 
     }
     public void printInOrder() {
+    if (!students.isEmpty()) {
+        System.out.println("Student Score List");
+    }
     Collections.sort(students); // uses compareTo from Student
         for (Student student : students) {
             System.out.println(student);
         }
-        students.clear(); // clear the list for the next file
+        if (!errors.isEmpty() && !students.isEmpty()) {
+            System.out.println();
+        }
+        for (String error : errors) {
+            System.out.println(error);
+        }
+            System.out.println();
+
     }
 
     public void processFiles() {
